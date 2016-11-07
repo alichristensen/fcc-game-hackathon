@@ -11,6 +11,14 @@ function tables_draw(x, y) {
 	ctx.closePath;
 } 
 
+function player_draw() {
+	ctx.beginPath(); 
+	ctx.rect(10, 10, 30, 30);
+	ctx.fillStyle = "#0095DD"; 
+	ctx.fill();
+	ctx.closePath();
+}
+
 //fill board with tables: 
 tables_draw(70, 100);
 tables_draw(200, 180);
@@ -19,3 +27,4 @@ tables_draw(100, 280);
 tables_draw(260, 70);
 tables_draw(388, 170);
 tables_draw(410, 50);
+player_draw();
