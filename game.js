@@ -1,9 +1,10 @@
 var canvas 	= document.getElementById("canvas"), 
-	ctx 	= canvas.getContext("2d");
+	ctx 	= canvas.getContext("2d"), 
+	count 	= 0;
 
-var tableRad = 35, 
-	xCoords  = [70, 200, 300, 290, 460, 500], 
-	yCoords  = [130, 400, 150, 310, 180, 440];
+var tableRad = 45, 
+	xCoords  = [70, 150, 300, 290, 480, 500], 
+	yCoords  = [130, 420, 150, 310, 200, 400];
 
 var right 	= false, 
 	left 	= false, 
@@ -77,7 +78,6 @@ function draw() {
 	}
 
 	player_draw(playerX, playerY);
-
 	bird_draw (birdX, birdY);
 
 	//move player
