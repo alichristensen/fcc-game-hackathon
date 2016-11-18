@@ -1,6 +1,7 @@
 var canvas 	= document.getElementById("canvas"), 
 	ctx 	= canvas.getContext("2d"), 
-	count 	= 0;
+	count 	= 0, 
+	lives 	= 5;
 
 var button = document.getElementById("startButton");
 
@@ -19,8 +20,8 @@ var playerX 	 = canvas.width/2,
 	playerHeight = 30;
 
 var birdRad = 10, 
-	dx 		= 1, 
-	dy 		= 1;
+	dx 		= 2, 
+	dy 		= 2;
 var birdX;
 var birdY;
 
@@ -77,7 +78,7 @@ function bird_draw() {
 score_draw = function() {
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
-	ctx.fillText("Lives Remaining: " + (5-count), 10, 560);
+	ctx.fillText("Lives Remaining: " + (lives-count), 10, 560);
 }
 
 function draw() {
@@ -159,54 +160,66 @@ function draw() {
 		}
 	}
 
-	//move bird
-	//if bird hits one of the walls, change direction in x
 	if ( birdX + dx > canvas.width - birdRad || birdX + dx < birdRad) {
 		dx = -dx;
+	} else if (birdX+dx>=xCoords[0]-tableRad-birdRad && birdX+dx<=xCoords[0]+tableRad+birdRad && birdY>=yCoords[0]-tableRad && birdY<=yCoords[0]+tableRad) {
+		dx = -dx;
+		count++;
+	} else if (birdX+dx>=xCoords[1]-tableRad-birdRad && birdX+dx<=xCoords[1]+tableRad+birdRad && birdY>=yCoords[1]-tableRad && birdY<=yCoords[1]+tableRad) {
+		dx = -dx;
+		count++;
+	} else if (birdX+dx>=xCoords[2]-tableRad-birdRad && birdX+dx<=xCoords[2]+tableRad+birdRad && birdY>=yCoords[2]-tableRad && birdY<=yCoords[2]+tableRad) {
+		dx = -dx;
+		count++;
+	} else if (birdX+dx>=xCoords[3]-tableRad-birdRad && birdX+dx<=xCoords[3]+tableRad+birdRad && birdY>=yCoords[3]-tableRad && birdY<=yCoords[3]+tableRad) {
+		dx = -dx;
+		count++;
+	} else if (birdX+dx>=xCoords[4]-tableRad-birdRad && birdX+dx<=xCoords[4]+tableRad+birdRad && birdY>=yCoords[4]-tableRad && birdY<=yCoords[4]+tableRad) {
+		dx = -dx;
+		count++;
+	} else if (birdX+dx>=xCoords[5]-tableRad-birdRad && birdX+dx<=xCoords[5]+tableRad+birdRad && birdY>=yCoords[5]-tableRad && birdY<=yCoords[5]+tableRad) {
+		dx = -dx;
+		count++;
+	} else if (birdX>=playerX && birdX<=playerX+playerWidth && birdY>=playerY && birdY<=playerY+playerWidth) {
+		alert("YOU WIN!!!!!!"); 
+		document.location.reload();
 	} else {
-		//if bird hits player game over
-		if (birdX>=playerX && birdX<=playerX+playerWidth && birdY>=playerY && birdY<=playerY+playerWidth) {
-			alert("YOU WIN!!!!!!"); 
-			document.location.reload();
-		//if bird hits any table, change direction in x
-		} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
-			dx = -dx;
-			dy = -dy;
-			count++;
-		} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
-			dx = -dx;
-			dy = -dy;
-			count++;
-		} else if(birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
-			dx = -dx;
-			dy = -dy;
-			count++;
-		} else if(birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
-			dx = -dx;
-			dy = -dy;
-			count++;
-		} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
-			dx = -dx;
-			dy = -dy;
-			count++;
-		} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
-			dx = -dx;
-			dy = -dy;
-			count++;
-		} else {
-			birdX += dx;
-		}
+		birdX += dx;
 	}
+
 	if (birdY + dy > canvas.height - birdRad) {
 		dy = -dy;
 	} else if (birdY + dy < 0) {
 		dy = -dy;
+	} else if (birdY+dy>=yCoords[0]-tableRad-birdRad && birdY+dy<=yCoords[0]+tableRad+birdRad && birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad) {
+		dy = -dy;
+		count++;
+	} else if (birdY+dy>=yCoords[1]-tableRad-birdRad && birdY+dy<=yCoords[1]+tableRad+birdRad && birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad) {
+		dy = -dy;
+		count++;
+	} else if (birdY+dy>=yCoords[2]-tableRad-birdRad && birdY+dy<=yCoords[2]+tableRad+birdRad && birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad) {
+		dy = -dy;
+		count++;
+	} else if (birdY+dy>=yCoords[3]-tableRad-birdRad && birdY+dy<=yCoords[3]+tableRad+birdRad && birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad) {
+		dy = -dy;
+		count++;
+	} else if (birdY+dy>=yCoords[4]-tableRad-birdRad && birdY+dy<=yCoords[4]+tableRad+birdRad && birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad) {
+		dy = -dy;
+		count++;
+	} else if (birdY+dy>=yCoords[5]-tableRad-birdRad && birdY+dy<=yCoords[5]+tableRad+birdRad && birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad) {
+		dy = -dy;
+		count++;
 	} else {
-		birdY += dy;
+		birdY += dy
 	}
 
+
+
+
+
+
 	//keep track of score
-	if (count==3) {
+	if (count==lives) {
 		alert("GAME OVER!!!!!");
 		document.location.reload();
 	}
