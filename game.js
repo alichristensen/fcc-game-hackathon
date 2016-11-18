@@ -44,6 +44,8 @@ if (wall == 1) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
+button.addEventListener("click", game_start, false);
+
 function wall_generator() {
 	return Math.floor(Math.random() *4) + 1;
 }
@@ -161,17 +163,23 @@ function draw() {
 			document.location.reload();
 		//if bird hits any table, change direction in x
 		} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
-			dx = -dx+birdRad;
+			dx = -dx;
+			dy = -dy;
 		} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
-			dx = -dx+birdRad;
+			dx = -dx;
+			dy = -dy;
 		} else if(birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
-			dx = -dx+birdRad;
+			dx = -dx;
+			dy = -dy;
 		} else if(birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
-			dx = -dx+birdRad;
+			dx = -dx;
+			dy = -dy;
 		} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
-			dx = -dx+birdRad;
+			dx = -dx;
+			dy = -dy;
 		} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
-			dx = -dx+birdRad;
+			dx = -dx;
+			dy = -dy;
 		} else {
 			birdX += dx;
 		}
@@ -180,19 +188,6 @@ function draw() {
 		dy = -dy;
 	} else if (birdY + dy < 0) {
 		dy = -dy;
-	//if bird hits any table, change direction in y
-	} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
-		dy = -dy+birdRad;
-	} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
-		dy = -dy+birdRad;
-	} else if (birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
-		dy = -dy+birdRad;
-	} else if (birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
-		dy = -dy+birdRad;
-	} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
-		dy = -dy+birdRad;
-	} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
-		dy = -dy+birdRad;
 	} else {
 		birdY += dy;
 	}
@@ -229,5 +224,3 @@ function game_start() {
 }
 
 draw();
-
-button.addEventListener("click", game_start, false);
