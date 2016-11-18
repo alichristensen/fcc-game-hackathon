@@ -3,8 +3,8 @@ var canvas 	= document.getElementById("canvas"),
 	count 	= 0;
 
 var tableRad = 45, 
-	xCoords  = [70, 150, 300, 290, 480, 500], 
-	yCoords  = [130, 420, 150, 310, 200, 400];
+	xCoords  = [100, 150, 300, 290, 500, 500], 
+	yCoords  = [130, 450, 150, 310, 130, 430];
 
 var right 	= false, 
 	left 	= false, 
@@ -22,6 +22,7 @@ var birdRad = 10,
 var birdX;
 var birdY;
 
+//randomize which wall the "bird" starts from
 var wall = wall_generator();
 console.log(wall);
 if (wall == 1) {
@@ -82,68 +83,68 @@ function draw() {
 
 	//move player
 	if (right && playerX < canvas.width - playerWidth) {
-		if (playerX<=xCoords[0]-tableRad && playerX>=xCoords[0]-tableRad-30 && playerY>=yCoords[0]-tableRad && playerY<=yCoords[0]+tableRad) {
+		if (playerX<=xCoords[0]-tableRad && playerX>=xCoords[0]-tableRad-30 && playerY>=yCoords[0]-tableRad-30 && playerY<=yCoords[0]+tableRad) {
 			playerX += 0;
-		} else if (playerX<=xCoords[1]-tableRad && playerX>=xCoords[1]-tableRad-30 && playerY>=yCoords[1]-tableRad && playerY<=yCoords[1]+tableRad) {
+		} else if (playerX<=xCoords[1]-tableRad && playerX>=xCoords[1]-tableRad-30 && playerY>=yCoords[1]-tableRad-30 && playerY<=yCoords[1]+tableRad) {
 			playerX += 0;
-		} else if (playerX<=xCoords[2]-tableRad && playerX>=xCoords[2]-tableRad-30 && playerY>=yCoords[2]-tableRad && playerY<=yCoords[2]+tableRad) {
+		} else if (playerX<=xCoords[2]-tableRad && playerX>=xCoords[2]-tableRad-30 && playerY>=yCoords[2]-tableRad-30 && playerY<=yCoords[2]+tableRad) {
 			playerX += 0;
-		} else if (playerX<=xCoords[3]-tableRad && playerX>=xCoords[3]-tableRad-30 && playerY>=yCoords[3]-tableRad && playerY<=yCoords[3]+tableRad) {
+		} else if (playerX<=xCoords[3]-tableRad && playerX>=xCoords[3]-tableRad-30 && playerY>=yCoords[3]-tableRad-30 && playerY<=yCoords[3]+tableRad) {
 			playerX += 0;
-		} else if (playerX<=xCoords[4]-tableRad && playerX>=xCoords[4]-tableRad-30 && playerY>=yCoords[4]-tableRad && playerY<=yCoords[4]+tableRad) {
+		} else if (playerX<=xCoords[4]-tableRad && playerX>=xCoords[4]-tableRad-30 && playerY>=yCoords[4]-tableRad-30 && playerY<=yCoords[4]+tableRad) {
 			playerX += 0;
-		} else if(playerX<=xCoords[5]-tableRad && playerX>=xCoords[5]-tableRad-30 && playerY>=yCoords[5]-tableRad && playerY<=yCoords[5]+tableRad) {
+		} else if(playerX<=xCoords[5]-tableRad && playerX>=xCoords[5]-tableRad-30 && playerY>=yCoords[5]-tableRad-30 && playerY<=yCoords[5]+tableRad) {
 			playerX += 0;
 		} else {
-			playerX += 3;	
+			playerX += 2;	
 		}
 	} else if (left && playerX > 0) {
 		if (playerX>=xCoords[0]+tableRad && playerX<=xCoords[0]+tableRad+10 && playerY>=yCoords[0]-tableRad && playerY<=yCoords[0]+tableRad) {
 			playerX += 0;
-		} else if (playerX>=xCoords[1]+tableRad && playerX<=xCoords[1]+tableRad+10 && playerY>=yCoords[1]-tableRad && playerY<=yCoords[1]+tableRad) {
+		} else if (playerX>=xCoords[1]+tableRad && playerX<=xCoords[1]+tableRad+10 && playerY>=yCoords[1]-tableRad-30 && playerY<=yCoords[1]+tableRad) {
 			playerX += 0;
-		} else if (playerX>=xCoords[2]+tableRad && playerX<=xCoords[2]+tableRad+10 && playerY>=yCoords[2]-tableRad && playerY<=yCoords[2]+tableRad) {
+		} else if (playerX>=xCoords[2]+tableRad && playerX<=xCoords[2]+tableRad+10 && playerY>=yCoords[2]-tableRad-30 && playerY<=yCoords[2]+tableRad) {
 			playerX += 0;
-		} else if (playerX>=xCoords[3]+tableRad && playerX<=xCoords[3]+tableRad+10 && playerY>=yCoords[3]-tableRad && playerY<=yCoords[3]+tableRad) {
+		} else if (playerX>=xCoords[3]+tableRad && playerX<=xCoords[3]+tableRad+10 && playerY>=yCoords[3]-tableRad-30 && playerY<=yCoords[3]+tableRad) {
 			playerX += 0;
-		} else if(playerX>=xCoords[4]+tableRad && playerX<=xCoords[4]+tableRad+10 && playerY>=yCoords[4]-tableRad && playerY<=yCoords[4]+tableRad) {
+		} else if(playerX>=xCoords[4]+tableRad && playerX<=xCoords[4]+tableRad+10 && playerY>=yCoords[4]-tableRad-30 && playerY<=yCoords[4]+tableRad) {
 			playerX += 0;
-		} else if(playerX>=xCoords[5]+tableRad && playerX<=xCoords[5]+tableRad+10 && playerY>=yCoords[5]-tableRad && playerY<=yCoords[5]+tableRad) {
+		} else if(playerX>=xCoords[5]+tableRad && playerX<=xCoords[5]+tableRad+10 && playerY>=yCoords[5]-tableRad-30 && playerY<=yCoords[5]+tableRad) {
 			playerX += 0;
 		} else {
-			playerX -= 3;
+			playerX -= 2;
 		}
 	} else if (up && playerY > 0) {
-		if (playerX>=xCoords[0]-tableRad && playerX<=xCoords[0]+tableRad && playerY>=yCoords[0]+tableRad && playerY<=yCoords[0]+tableRad+3) {
+		if (playerX>=xCoords[0]-tableRad-30 && playerX<=xCoords[0]+tableRad && playerY>=yCoords[0]+tableRad && playerY<=yCoords[0]+tableRad+3) {
 			playerY += 0;
-		} else if (playerX>=xCoords[1]-tableRad && playerX<=xCoords[1]+tableRad && playerY>=yCoords[1]+tableRad && playerY<=yCoords[1]+tableRad+3) {
+		} else if (playerX>=xCoords[1]-tableRad-30 && playerX<=xCoords[1]+tableRad && playerY>=yCoords[1]+tableRad && playerY<=yCoords[1]+tableRad+3) {
 			playerY += 0;	
-		} else if (playerX>=xCoords[2]-tableRad && playerX<=xCoords[2]+tableRad && playerY>=yCoords[2]+tableRad && playerY<=yCoords[2]+tableRad+3) {
+		} else if (playerX>=xCoords[2]-tableRad-30 && playerX<=xCoords[2]+tableRad && playerY>=yCoords[2]+tableRad && playerY<=yCoords[2]+tableRad+3) {
 			playerY += 0;
-		} else if (playerX>=xCoords[3]-tableRad && playerX<=xCoords[3]+tableRad && playerY>=yCoords[3]+tableRad && playerY<=yCoords[3]+tableRad+3) {
+		} else if (playerX>=xCoords[3]-tableRad-30 && playerX<=xCoords[3]+tableRad && playerY>=yCoords[3]+tableRad && playerY<=yCoords[3]+tableRad+3) {
 			playerY += 0;
-		} else if (playerX>=xCoords[4]-tableRad && playerX<=xCoords[4]+tableRad && playerY>=yCoords[4]+tableRad && playerY<=yCoords[4]+tableRad+3) {
+		} else if (playerX>=xCoords[4]-tableRad-30 && playerX<=xCoords[4]+tableRad && playerY>=yCoords[4]+tableRad && playerY<=yCoords[4]+tableRad+3) {
 			playerY += 0;
-		} else if (playerX>=xCoords[5]-tableRad && playerX<=xCoords[5]+tableRad && playerY>=yCoords[5]+tableRad && playerY<=yCoords[5]+tableRad+3) {
+		} else if (playerX>=xCoords[5]-tableRad-30 && playerX<=xCoords[5]+tableRad && playerY>=yCoords[5]+tableRad && playerY<=yCoords[5]+tableRad+3) {
 			playerY += 0;
 		} else {
-			playerY -= 3;
+			playerY -= 2;
 		}
 	} else if (down && playerY < canvas.height - playerHeight) {
-		if (playerX>=xCoords[0]-tableRad && playerX<=xCoords[0]+tableRad && playerY>=yCoords[0]-tableRad-30 && playerY<=yCoords[0]-tableRad) {
+		if (playerX>=xCoords[0]-tableRad-30 && playerX<=xCoords[0]+tableRad && playerY>=yCoords[0]-tableRad-30 && playerY<=yCoords[0]-tableRad) {
 			playerY+=0;
-		} else if (playerX>=xCoords[1]-tableRad && playerX<=xCoords[1]+tableRad && playerY>=yCoords[1]-tableRad-30 && playerY<=yCoords[1]-tableRad) {
+		} else if (playerX>=xCoords[1]-tableRad-30 && playerX<=xCoords[1]+tableRad && playerY>=yCoords[1]-tableRad-30 && playerY<=yCoords[1]-tableRad) {
 			playerY += 0;
-		} else if (playerX>=xCoords[2]-tableRad && playerX<=xCoords[2]+tableRad && playerY>=yCoords[2]-tableRad-30 && playerY<=yCoords[2]-tableRad) {
+		} else if (playerX>=xCoords[2]-tableRad-30 && playerX<=xCoords[2]+tableRad && playerY>=yCoords[2]-tableRad-30 && playerY<=yCoords[2]-tableRad) {
 			playerY +=0;
-		} else if (playerX>=xCoords[3]-tableRad && playerX<=xCoords[3]+tableRad && playerY>=yCoords[3]-tableRad-30 && playerY<=yCoords[3]-tableRad) {
+		} else if (playerX>=xCoords[3]-tableRad-30 && playerX<=xCoords[3]+tableRad && playerY>=yCoords[3]-tableRad-30 && playerY<=yCoords[3]-tableRad) {
 			playerY += 0;
-		} else if (playerX>=xCoords[4]-tableRad && playerX<=xCoords[4]+tableRad && playerY>=yCoords[4]-tableRad-30 && playerY<=yCoords[4]-tableRad) {
+		} else if (playerX>=xCoords[4]-tableRad-30 && playerX<=xCoords[4]+tableRad && playerY>=yCoords[4]-tableRad-30 && playerY<=yCoords[4]-tableRad) {
 			playerY += 0;
-		} else if (playerX>=xCoords[5]-tableRad && playerX<=xCoords[5]+tableRad && playerY>=yCoords[5]-tableRad-30 && playerY<=yCoords[5]-tableRad) {
+		} else if (playerX>=xCoords[5]-tableRad-30 && playerX<=xCoords[5]+tableRad && playerY>=yCoords[5]-tableRad-30 && playerY<=yCoords[5]-tableRad) {
 			playerY += 0;
 		} else {
-			playerY += 3;
+			playerY += 2;
 		}
 	}
 
@@ -152,26 +153,19 @@ function draw() {
 		dx = -dx;
 	} else {
 		if (birdX>=playerX && birdX<=playerX+playerWidth && birdY>=playerY && birdY<=playerY+playerWidth) {
-			alert("YOU WIN");
-			document.location.reload();
+			count++; 
 		} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
-			alert("YOU LOSE");
-			document.location.reload();
+			count++;
 		} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
-			alert("YOU LOSE");
-			document.location.reload();
+			count++;
 		} else if(birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
-			alert("YOU LOSE");
-			document.location.reload();
+			count++;
 		} else if(birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
-			alert("YOU LOSE");
-			document.location.reload();
+			count++;
 		} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
-			alert("YOU LOSE");
-			document.location.reload();
+			count++;
 		} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
-			alert("YOU LOSE");
-			document.location.reload();
+			count++;
 		} else {
 			birdX += dx;
 		}
@@ -209,4 +203,4 @@ function keyUpHandler(e) {
 	}
 }
 
-setInterval(draw, 20);
+setInterval(draw, 7);
