@@ -2,6 +2,8 @@ var canvas 	= document.getElementById("canvas"),
 	ctx 	= canvas.getContext("2d"), 
 	count 	= 0;
 
+var button = document.getElementById("startButton");
+
 var tableRad = 45, 
 	xCoords  = [100, 150, 300, 290, 500, 500], 
 	yCoords  = [130, 450, 150, 310, 130, 430];
@@ -149,23 +151,27 @@ function draw() {
 	}
 
 	//move bird
+	//if bird hits one of the walls, change direction in x
 	if ( birdX + dx > canvas.width - birdRad || birdX + dx < birdRad) {
 		dx = -dx;
 	} else {
+		//if bird hits player game over
 		if (birdX>=playerX && birdX<=playerX+playerWidth && birdY>=playerY && birdY<=playerY+playerWidth) {
-			count++; 
+			alert("YOU WIN!!!!!!"); 
+			document.location.reload();
+		//if bird hits any table, change direction in x
 		} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
-			count++;
+			dx = -dx+birdRad;
 		} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
-			count++;
+			dx = -dx+birdRad;
 		} else if(birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
-			count++;
+			dx = -dx+birdRad;
 		} else if(birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
-			count++;
+			dx = -dx+birdRad;
 		} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
-			count++;
+			dx = -dx+birdRad;
 		} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
-			count++;
+			dx = -dx+birdRad;
 		} else {
 			birdX += dx;
 		}
@@ -174,9 +180,24 @@ function draw() {
 		dy = -dy;
 	} else if (birdY + dy < 0) {
 		dy = -dy;
+	//if bird hits any table, change direction in y
+	} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
+		dy = -dy+birdRad;
+	} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
+		dy = -dy+birdRad;
+	} else if (birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
+		dy = -dy+birdRad;
+	} else if (birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
+		dy = -dy+birdRad;
+	} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
+		dy = -dy+birdRad;
+	} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
+		dy = -dy+birdRad;
 	} else {
 		birdY += dy;
 	}
+
+
 }
 
 function keyDownHandler(e) {
@@ -203,4 +224,10 @@ function keyUpHandler(e) {
 	}
 }
 
-setInterval(draw, 7);
+function game_start() {
+	setInterval(draw, 7);
+}
+
+draw();
+
+button.addEventListener("click", game_start, false);
