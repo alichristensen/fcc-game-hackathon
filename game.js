@@ -74,6 +74,12 @@ function bird_draw() {
 	ctx.closePath;
 }
 
+score_draw = function() {
+	ctx.font = "16px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("Lives Remaining: " + (5-count), 10, 560);
+}
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -84,6 +90,7 @@ function draw() {
 
 	player_draw(playerX, playerY);
 	bird_draw (birdX, birdY);
+	score_draw();
 
 	//move player
 	if (right && playerX < canvas.width - playerWidth) {
@@ -165,21 +172,27 @@ function draw() {
 		} else if (birdX>=xCoords[0]-tableRad && birdX<=xCoords[0]+tableRad && birdY<=yCoords[0]+tableRad && birdY>=yCoords[0]-tableRad) {
 			dx = -dx;
 			dy = -dy;
+			count++;
 		} else if (birdX>=xCoords[1]-tableRad && birdX<=xCoords[1]+tableRad && birdY<=yCoords[1]+tableRad && birdY>=yCoords[1]-tableRad) {
 			dx = -dx;
 			dy = -dy;
+			count++;
 		} else if(birdX>=xCoords[2]-tableRad && birdX<=xCoords[2]+tableRad && birdY<=yCoords[2]+tableRad && birdY>=yCoords[2]-tableRad) {
 			dx = -dx;
 			dy = -dy;
+			count++;
 		} else if(birdX>=xCoords[3]-tableRad && birdX<=xCoords[3]+tableRad && birdY<=yCoords[3]+tableRad && birdY>=yCoords[3]-tableRad) {
 			dx = -dx;
 			dy = -dy;
+			count++;
 		} else if (birdX>=xCoords[4]-tableRad && birdX<=xCoords[4]+tableRad && birdY<=yCoords[4]+tableRad && birdY>=yCoords[4]-tableRad) {
 			dx = -dx;
 			dy = -dy;
+			count++;
 		} else if (birdX>=xCoords[5]-tableRad && birdX<=xCoords[5]+tableRad && birdY<=yCoords[5]+tableRad && birdY>=yCoords[5]-tableRad) {
 			dx = -dx;
 			dy = -dy;
+			count++;
 		} else {
 			birdX += dx;
 		}
@@ -190,6 +203,12 @@ function draw() {
 		dy = -dy;
 	} else {
 		birdY += dy;
+	}
+
+	//keep track of score
+	if (count==3) {
+		alert("GAME OVER!!!!!");
+		document.location.reload();
 	}
 
 
