@@ -6,23 +6,42 @@
 	<style type="text/css">
 		
 		* { padding: 50; margin:80; }
-		canvas { background: #eee; display: block; margin: 0 auto; }
-		div {margin: 100; padding: 100;}
+		canvas { background: #eee; display: block; margin-top: 30px;}
+		#game {float: right; width: 70%;}
+		#text {float: left; width: 20%; padding-top: 30px; padding-right: 20px; padding-left: 20px;}
+		body {background-color: #00b0ff; color: white; font-family: "Arial"; font-size: 1.3em;}
+		button {width: 100%; background-color: #37474f; color: white; height: 40px; font-family: "Arial"; font-size: 1.3em;}
+		h1 {text-shadow: 1px 1px 2px black; }
+		#first {text-align: left}
+		#middle {text-align: center}
+		#last {text-align: right}
+		img {height: 40px; width: 40px;}
 
 	</style>
 </head>
 <body>
 
-	<canvas id="canvas" width="680" height="580"></canvas>
-	<div>
-		<p>Don't let the black bird get to the table!!! Use your cursor to knock out the bird before it gets too close
-			*careful* if the bird hits three tables it's game over!!
-		</p>
-		<p>Click start button below to begin</p>
-	</div>
-	<div>
-		<button id="startButton">start</button>
-	</div>
+	<div id="main">
+		<div id="game">
+			<canvas id="canvas" width="680" height="580"></canvas>
+		</div>
+		<div id="text">
+			<div>
+				<h1 id="first">STOP  <img src="https://cdn.shopify.com/s/files/1/1061/1924/products/Clapping_Hands_Emoji_large.png?v=1458743956"/></h1>
+				<h1 id="middle">THAT  <img src="https://cdn.shopify.com/s/files/1/1061/1924/products/Clapping_Hands_Emoji_large.png?v=1458743956"/></h1>
+				<h1 id="last">BIRD  <img src="https://cdn.shopify.com/s/files/1/1061/1924/products/Clapping_Hands_Emoji_large.png?v=1458743956"/></h1>
+			</div>
+			<div>
+				<p>Don't let the black bird get to the table!!! Use your arrow keys to knock out the bird before it gets too close<br/>
+				*careful* if the bird hits a table <strong><em>five</em></strong> times it's game over!!
+				</p>
+				<p>Click start button below to begin</p>
+			</div>
+			<div>
+				<button id="startButton">START</button>
+			</div>
+			</div>
+		</div>
 
 	<script type="text/javascript" src="game.js"></script>
 
