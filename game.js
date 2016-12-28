@@ -5,25 +5,35 @@ var canvas 	= document.getElementById("canvas"),
 
 var button = document.getElementById("startButton");
 
-var tableRad = 45, 
-	xCoords  = [100, 150, 300, 290, 500, 500], 
-	yCoords  = [130, 450, 150, 310, 130, 430];
+var table = {
+	radius: 45, 
+	coords: [
+		[100, 130], 
+		[150, 450], 
+		[300, 150], 
+		[290, 310], 
+		[500, 130], 
+		[500, 430] 
+	]
+}
 
-var right 	= false, 
-	left 	= false, 
-	up 		= false, 
-	down 	= false;
+console.log(table);
 
-var playerX 	 = canvas.width/2,
-	playerY 	 = canvas.height/2, 
-	playerWidth  = 30, 
-	playerHeight = 30;
+var right = false, left = false, up = false, down = false;
+
+var player = {
+	x: canvas.width/2, 
+	y: canvas.height/2, 
+	width: 30, 
+	height: 30
+}
 
 var birdRad = 10, 
 	dx 		= 2, 
 	dy 		= 2;
 var birdX;
 var birdY;
+
 
 //randomize which wall the "bird" starts from
 var wall = wall_generator();
@@ -53,15 +63,15 @@ function wall_generator() {
 
 function tables_draw(x, y) {
 	ctx.beginPath(); 
-	ctx.arc(x, y, tableRad, 0, Math.PI*2); 
+	ctx.arc(x, y, table.radius, 0, Math.PI*2); 
 	ctx.fillStyle = "red"; 
 	ctx.fill();
 	ctx.closePath;
 } 
 
-function player_draw(x, y) {
+function player_draw(x, y, w, h) {
 	ctx.beginPath(); 
-	ctx.rect(x, y, playerWidth, playerHeight);
+	ctx.rect(x, y, w, h);
 	ctx.fillStyle = "#0095DD"; 
 	ctx.fill();
 	ctx.closePath();
@@ -84,12 +94,11 @@ score_draw = function() {
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	//draw tables
-	for (var i=0; i<xCoords.length; i++) {
-		tables_draw(xCoords[i], yCoords[i]);
-	}
+	table.coords.forEach(function(i) {
+		tables_draw(i[0], i[1]);
+	})
 
-	player_draw(playerX, playerY);
+	player_draw(player.x, player.y, player.width, player.height);
 	bird_draw (birdX, birdY);
 	score_draw();
 
