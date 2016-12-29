@@ -3,6 +3,9 @@ var canvas 	= document.getElementById("canvas"),
 	count 	= 0, 
 	lives 	= 5;
 
+const DX = 2, DY = 2;
+var right = false, left = false, up = false, down = false;
+
 var button = document.getElementById("startButton");
 
 var table = {
@@ -14,42 +17,72 @@ var table = {
 		[290, 310], 
 		[500, 130], 
 		[500, 430] 
-	]
+	], 
+	draw: function(x, y) {
+		ctx.beginPath(); 
+		ctx.arc(x, y, table.radius, 0, Math.PI*2); 
+		ctx.fillStyle = "red"; 
+		ctx.fill();
+		ctx.closePath;
+	}
+}
+
+var randoms = {
+	wall: function() {
+		return (Math.floor(Math.random() *4) + 1);
+	}, 
+	bird_x: function() {
+		return (Math.floor(Math.random() * (460)) + 10);
+	}, 
+	bird_y: function() {
+		return (Math.floor(Math.random() * (360)) + 10);
+	}
 }
 
 console.log(table);
-
-var right = false, left = false, up = false, down = false;
 
 var player = {
 	x: canvas.width/2, 
 	y: canvas.height/2, 
 	width: 30, 
-	height: 30
+	height: 30, 
+	draw: function() {
+		ctx.beginPath();
+		ctx.rect(this.x, this.y, this.width, this.height);
+		ctx.fillStyle = "#0095DD"; 
+		ctx.fill();
+		ctx.closePath();
+	}
 }
 
-var birdRad = 10, 
-	dx 		= 2, 
-	dy 		= 2;
-var birdX;
-var birdY;
-
-
-//randomize which wall the "bird" starts from
-var wall = wall_generator();
-console.log(wall);
-if (wall == 1) {
-	birdX = Math.random() * (460) + 10;
-	birdY = birdRad;
-} else if (wall == 2) {
-	birdX = canvas.width-birdRad;
-	birdY = Math.random() * (360) + 10;
-} else if (wall == 3) {
-	birdX = Math.random() * (460) + 10;
-	birdY = canvas.height-birdRad;
-} else if (wall == 4) {
-	birdX = birdRad;
-	birdY = Math.random() * (360) + 10;
+class Bird {
+	constructor() {
+		this.radius = 10;
+		if (randoms.wall() == 1) {
+			this.x = randoms.bird_x(); 
+			this.y = this.radius;
+			console.log("1");
+		} else if (randoms.wall() == 2) {
+			this.x = canvas.width - this.radius;
+			this.y = randoms.bird_y();
+			console.log("2");
+		} else if (randoms.wall() == 3) {
+			this.x = randoms.bird_x();
+			this.y = canvas.height - this.radius;
+			console.log("3");
+		} else if (randoms.wall() == 4) {
+			this.x = this.radius;
+			this.y = randoms.bird_y();
+			console.log("4");
+		}
+	}
+	draw() {
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); 
+ 		ctx.fillStyle = "black"; 
+ 		ctx.fill();
+ 		ctx.closePath;
+	}
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -61,29 +94,13 @@ function wall_generator() {
 	return Math.floor(Math.random() *4) + 1;
 }
 
-function tables_draw(x, y) {
-	ctx.beginPath(); 
-	ctx.arc(x, y, table.radius, 0, Math.PI*2); 
-	ctx.fillStyle = "red"; 
-	ctx.fill();
-	ctx.closePath;
-} 
-
-function player_draw(x, y, w, h) {
-	ctx.beginPath(); 
-	ctx.rect(x, y, w, h);
-	ctx.fillStyle = "#0095DD"; 
-	ctx.fill();
-	ctx.closePath();
-}
-
-function bird_draw() {
-	ctx.beginPath();
-	ctx.arc(birdX, birdY, birdRad, 0, Math.PI*2); 
-	ctx.fillStyle = "black"; 
-	ctx.fill();
-	ctx.closePath;
-}
+// function tables_draw(x, y) {
+// 	ctx.beginPath(); 
+// 	ctx.arc(x, y, table.radius, 0, Math.PI*2); 
+// 	ctx.fillStyle = "red"; 
+// 	ctx.fill();
+// 	ctx.closePath;
+// } 
 
 score_draw = function() {
 	ctx.font = "16px Arial";
@@ -91,15 +108,18 @@ score_draw = function() {
 	ctx.fillText("Lives Remaining: " + (lives-count), 10, 560);
 }
 
+var bird = new Bird;
+console.log(bird);
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	table.coords.forEach(function(i) {
-		tables_draw(i[0], i[1]);
+		table.draw(i[0], i[1]);
 	})
 
-	player_draw(player.x, player.y, player.width, player.height);
-	bird_draw (birdX, birdY);
+	player.draw();
+	bird.draw();
 	score_draw();
 
 	//move player
@@ -221,11 +241,6 @@ function draw() {
 	} else {
 		birdY += dy
 	}
-
-
-
-
-
 
 	//keep track of score
 	if (count==lives) {
